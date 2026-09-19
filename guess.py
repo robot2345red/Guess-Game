@@ -1,14 +1,22 @@
 import random
+from tkinter import messagebox
 
+import face
+
+computer = random.randint(1, 1000)
 
 def guess():
-    computer = random.randint(1, 1000)
-    user = int(input("Guess a number between 1 and 1000: "))
-    if user > computer:
-        print("Too high!")
-    elif user < computer:
-        print("Too low!")
-    else:
-        print("You guessed it!")
+    try:
+        user = int(face.entry.get())
+        if user == computer:
+            messagebox.showinfo(title="Success", message="You guessed it!", icon="info")
+        elif user > computer:
+            messagebox.showinfo(title="Error", message="Too high!", icon="error")
+        elif user < computer:
+            messagebox.showinfo(title="Error", message="Too low!", icon="error")
+    except ValueError:
+        messagebox.showinfo(title="Error caused by invalid input", message="Invalid input!", icon="error")
 
-guess()
+
+if __name__ == "__main__":
+    face.root.mainloop()
