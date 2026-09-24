@@ -21,9 +21,13 @@ class Game(ctk.CTk):
             read = file.readlines()
             if len(read) >= 20:
                 read.pop(0)
-            read.append(str(value) + '\n')
+            elif len(read) == 0:
+                read.append(str(value) + '\n')
+            else:
+                read.append(str(value) + '\n')
         with open('results.txt', 'w', encoding='utf-8') as file:
             file.writelines(read)
+
     def display_results(self):
         x, y = [], []
         with open('results.txt', 'r') as file:
